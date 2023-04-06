@@ -6,10 +6,10 @@ class SingletonStaticLocal
 public:
     SingletonStaticLocal(const SingletonStaticLocal&) = delete;
     SingletonStaticLocal& operator=(const SingletonStaticLocal&) = delete;
-    ~SingletonStaticLocal() = default;
     
     static SingletonStaticLocal* getInstance() 
     {
+        std::cout << "SingletonStaticLocal getInstance start" << std::endl;
         // Static local variable initialization is thread-safe
         // and will be initialized only once.
         static SingletonStaticLocal instance{};
@@ -30,7 +30,13 @@ public:
 
 private:
     explicit SingletonStaticLocal() : value{0}
-    {}
+    {
+        std::cout << "SingletonStaticLocal destructor" << std::endl;
+    }
+    ~SingletonStaticLocal()
+    {
+        std::cout << "SingletonStaticLocal destructor" << std::endl;
+    }
 
     int value;
     static std::mutex m; 

@@ -6,7 +6,6 @@ class SingletonLazy
 public:
     SingletonLazy(SingletonLazy const&) = delete;
     SingletonLazy& operator=(SingletonLazy const&) = delete;
-    ~SingletonLazy() {}
     
     void setValue(int newValue)
     {
@@ -30,6 +29,10 @@ public:
 
 private:
     explicit SingletonLazy() : value{0} {}
+    ~SingletonLazy() 
+    {
+        std::cout << "SigletonLazy destructor" << std::endl; 
+    }
 
     int value;
     static std::mutex m;
