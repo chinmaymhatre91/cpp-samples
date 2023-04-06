@@ -1,13 +1,15 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include "utils.h"
+#include "Utils/DateTime.h"
+
+using Utils::DateTime::getCurrentTime;
 
 void foo(int count, bool& running) 
 {
     while(running && count>=0)
     {
-	    std::cout << "Thread foo running, count - " << count << ", time - " << utils::getCurrentTime() << std::endl;
+	    std::cout << "Thread foo running, count - " << count << ", time - " << getCurrentTime() << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
         --count;
     }
@@ -15,13 +17,13 @@ void foo(int count, bool& running)
 
 int main(int argc, char** argv) 
 {
-    std::cout << "Start, time - " << utils::getCurrentTime() << std::endl;
+    std::cout << "Start, time - " << getCurrentTime() << std::endl;
     bool running = true;
     std::thread t1(foo, 10, std::ref(running));
     std::this_thread::sleep_for(std::chrono::seconds(5));
     running = false;
     t1.join();
-    std::cout << "End, time - " << utils::getCurrentTime() << std::endl;
+    std::cout << "End, time - " << getCurrentTime() << std::endl;
     return 0;
 }
 

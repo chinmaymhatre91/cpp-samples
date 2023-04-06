@@ -1,14 +1,14 @@
-#ifndef UTILS_DATE_TIME
-#define UTILS_DATE_TIME
+#ifndef UTILS_DATETIME
+#define UTILS_DATETIME
 
 #include <iostream>
 #include <sstream>
 #include <chrono>
 #include <iomanip>
 
-namespace utils
+namespace Utils
 {
-    namespace dateTime
+    namespace DateTime
     {
         std::string getCurrentTime()
         {
